@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generate Random Number</title>
+<style>
+body {
+background-image: url("https://media.istockphoto.com/id/1382147684/photo/online-tour-booking-art-collage.jpg?s=612x612&w=0&k=20&c=old7i8uPfKWLjqiyw6twaaRvG-vhkCDcqfI3ZXiN7A8=");
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
+padding: 150px;
+}
+a {
+margin-bottom: 15px;
+border-radius: 15px;
+background-color: rgb(164, 211, 252);
+padding: 5px;
+padding-left: 10px;
+padding-right: 10px;
+font-size: 15px;
+margin: 50px;
+font-family: 'Courier New', Courier, monospace;
+}
+h1 {
+font-family:'Courier New', Courier, monospace;
+font-size: 50px;
+}
+li{
+text-align: left;
+font-family: cursive;
+font-size: 18px;
+margin-left: 350px;
+font-weight: bold;
+}
+</style>
+</head>
+<body>
+<h1>{{ question.question_text }}</h1>
+
+<ul>
+{% for choice in question.choice_set.all %}
+<li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+</body>
+

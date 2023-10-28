@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pet Rescue</title>
+<style>
+body {
+background-image: url("http://s1.bwallpapers.com/thumbs2/2013/12/26/cute-dogs-background_104036.jpg");
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
+padding: 150px;
+}
+button {
+margin-bottom: 15px;
+border-radius: 15px;
+border-radius: 15px;
+background-color: rgb(164, 211, 252);
+padding: 5px;
+padding-left: 10px;
+padding-right: 10px;
+font-size: 15px;
+font-family: Broadway;
+    text-decoration-color: white;
+}
+h1 {
+font-family:'Courier New', Courier, monospace;
+font-size: 70px;
+text-decoration-color: white;
+}
+pre{
+text-align: justify;
+font-family: cursive;
+font-size: 20px;
+margin-left: 350px;
+font-weight: bold;
+    text-decoration-color: white;
+
+}
+</style>
+</head>
+<body>
+
+
+<center><h1>Care For me I shall Care For you!!</h1></center>
+<pre>“Help Them to get Home...”<pre></pre>
+{# <button onclick="location.href='{% url 'polls:index' %}'">Explore</button>#}
+
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>{{ question.question_text }}</h1></legend>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+        {% endfor %}
+    </fieldset>
+    <input type="submit" value="Adopt">
+</form>
+</body>
